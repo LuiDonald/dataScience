@@ -4,13 +4,6 @@
 import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt
-import os
-import sys
-import datetime
-import time
-import re
-import logging
-
 
 # %%
 df = pd.read_csv('../data/train.csv')
@@ -19,7 +12,12 @@ def dataTransformationKmtoMiles(data):
     data["Miles_Driven"] = data["Kilometers_Driven"] * 0.621371
     return data
 
-datatranformed = dataTransformationKmtoMiles(df)
+datatransformed = dataTransformationKmtoMiles(df)
+
+# get the average kilometers driver by fuel type
+df.groupby('Fuel_Type').mean()["Kilometers_Driven"].head().plot(kind='bar') 
+
+
 
 
 # %%
